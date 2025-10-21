@@ -105,7 +105,7 @@ export default function Aikataulu() {
           marginBottom: "10px",
         }}
       />
-      <h2 style={{ marginBottom: "20px" }}>Projektiaikataulu</h2>
+      <h2 style={{ marginBottom: "20px" }}>Viitteellinen projektiaikataulu</h2>
 
       <div style={{ marginBottom: "15px" }}>
         <label
