@@ -35,7 +35,7 @@ export default function Aikataulu() {
 
   const jaksonVari = (jakso) => {
     const colors = {
-      "Suunnittelun lähtötietojen hankkinen": "#bbdefb",
+      "Suunnittelun lähtötietojen hankkiminen": "#bbdefb",
       "Rakennuslupakuvien suunnittelu": "#fff59d",
       "Rakennusluvan hakemus, käsittely ja päätös": "#ffe082",
       "Rakennusluvan valitusaika": "#ffcc80",
