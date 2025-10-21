@@ -6,7 +6,7 @@ export default function Aikataulu() {
 
   const haeAikataulu = async () => {
     if (!sopimusPvm) return;
-    const res = await fetch("http://127.0.0.1:5000/api/aikataulu", {
+    const res = await fetch("https://sievitalo-backend.onrender.com/api/aikataulu", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ sopimus_pvm: sopimusPvm }),
