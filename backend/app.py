@@ -78,8 +78,23 @@ def aikataulu():
     except Exception:
         return jsonify({"error": "Virheellinen päivämäärä"}), 400
 
-    start_date = sopimus_pvm
-    end_date = sopimus_pvm + timedelta(weeks=60)  # 60 viikkoa projektille
+   # Selvitetään sopimuspäivä
+    try:
+        sopimus_pvm = datetime.strptime(sopimus_pvm_str, "%Y-%m-%d")
+    except Exception:
+        return jsonify({"error": "Virheellinen päivämäärä"}), 400
+
+    # 🔹 Siirrytään seuraavaan maanantaihin
+    # weekday(): ma=0, ti=1, ..., su=6
+    paivia_lisatty = (7 - sopimus_pvm.weekday()) % 7
+    if paivia_lisatty == 0:
+        paivia_lisatty = 7  # jos sopimus on maanantai, siirrytään seuraavaan viikkoon
+
+    projektin_alku = sopimus_pvm + timedelta(days=paivia_lisatty)
+
+    # 🔹 Käytetään projektin_alkua varsinaisena alkupäivänä
+    start_date = projektin_alku
+    end_date = projektin_alku + timedelta(weeks=60)
     current = start_date
     tulos = []
 
