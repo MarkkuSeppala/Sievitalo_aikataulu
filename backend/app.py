@@ -78,8 +78,8 @@ def aikataulu():
     except Exception:
         return jsonify({"error": "Virheellinen päivämäärä"}), 400
 
-    start_date = datetime(2025, 10, 27)
-    end_date = datetime(2026, 12, 14)
+    start_date = sopimus_pvm
+    end_date = sopimus_pvm + timedelta(weeks=60)  # 60 viikkoa projektille
     current = start_date
     tulos = []
 
