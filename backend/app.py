@@ -12,10 +12,6 @@ app = Flask(__name__)
 CORS(app)
 
 
-
-
-Luodaan PHASES-taulukko, joka näyttää tältä:
-
 PHASES = {
     1: "Asiakas kerää lähtötiedot suunnittelua varten",
     2: "Asiakas kerää lähtötiedot suunnittelua varten",
