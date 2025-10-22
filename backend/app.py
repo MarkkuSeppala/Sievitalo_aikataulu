@@ -13,7 +13,6 @@ CORS(app)
 
 
 
-🎯 Tavoite
 
 Luodaan PHASES-taulukko, joka näyttää tältä:
 
