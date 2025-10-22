@@ -11,42 +11,49 @@ except:
 app = Flask(__name__)
 CORS(app)
 
+
+
+🎯 Tavoite
+
+Luodaan PHASES-taulukko, joka näyttää tältä:
+
 PHASES = {
-    (2025, 44): "Asiakas kerää lähtötiedot suunnittelua varten",
-    (2025, 45): "Asiakas kerää lähtötiedot suunnittelua varten",
-    (2025, 46): "Luonnoskuvien tekeminen",
-    (2025, 47): "Asiakas esittelee kuvat rakennusvalvontaan",
-    (2025, 48): "Lupakuvien tekeminen",
-    (2025, 49): "Lupakuvien tekeminen",
-    (2026, 5): "RAKENNUSLUPA MYÖNNETTY",
-    (2026, 7): "Sähköasemapiirros",
-    (2026, 8): "(LVI-asemakuva tehdään 10 vk ennen talotoimitusta)",
-    (2026, 9): "RAKENNUSLUPA LAINVOIMAINEN",
-    (2026, 10): "LVI-suunnittelu, lopullinen kiintokalustesuunnittelu 5 viikkoa tästä eteen päin. 17–19 viikot elementtisuunnittelu",
-    (2026, 11): "LVI-suunnittelu",
-    (2026, 12): "Maansiirtotyöt alkaa",
-    (2026, 13): "Tontti rakentamiskunnossa / paalukohteissa paalutus",
-    (2026, 14): "Perustusten valu, sähkösuunnitelmien tekeminen",
-    (2026, 16): "Aloituspalaveri. Salaojat, sadevesikaivot ja routasuojaus. Sisä- ja ulkopuoliset täytöt",
-    (2026, 17): "Talotoimitus. (Sähkösuunnittelu / Sähköpistesuunnittelu)",
-    (2026, 18): "Vesikattoasennus. Asiakas kommentoi sähkösuunnitelman",
-    (2026, 19): "Sähkösuunnitelman tekeminen jatkuu",
-    (2026, 20): "LVI-töiden aloitus / asiakas hyväksyy sähkösuunnitelman",
-    (2026, 21): "Sisustusvalinnat ilmoitetaan toimittajalle",
-    (2026, 22): "Lattiavalu",
-    (2026, 23): "Vesimittarin asennus. Sähköjohdotus",
-    (2026, 25): "Takka-asennus",
-    (2026, 26): "Sisälevytykset tehty",
-    (2026, 31): "Sisustusmateriaalin sisäänkanto (SISUSTAITSE LUOVUTUS)",
-    (2026, 32): "Maalus / tapetointi alkaa. Kattoturvatuotteiden ja sadevesijärjestelmän toimitus/asennus",
-    (2026, 33): "Laattojen vastaanotto. Laatoitus",
-    (2026, 36): "Kiintokalustetoimitus / asennus. Kodinkoneiden vastaanotto",
-    (2026, 38): "LVI- ja sähkökalustus / Laminaatti, listat, väliovet, vastaanotto. Välisiivous",
-    (2026, 39): "Laminaattiasennus, listoitus",
-    (2026, 40): "Luovutustarkastus",
-    (2026, 42): "Luovutus. Loppusiivous. Talonäyttely HUOM! 2 ja 1,5 krs +5 viikkoa. Paritalo 1krs. +9 vk",
-    (2026, 47): "Luovutus 2 tai 1,5 krs (+5 viikkoa)",
-    (2026, 51): "Luovutus paritalo 1 krs (+9 viikkoa)",
+    1: "Asiakas kerää lähtötiedot suunnittelua varten",
+    2: "Asiakas kerää lähtötiedot suunnittelua varten",
+    3: "Lupakuvien tekeminen",
+    4: "Lupakuvien tekeminen, 1. kalustesuunnittelu",
+    5: "Lupakuvien tekeminen, asiakas esittelee luonnokset rakennusvalvonnalle",
+    6: "Lupakuvien tekeminen ja lupakuvat valmiit",
+    14: "Rakennuslupa myönnetty",
+    18: "Rakennuslupa lainvoimainen",
+    19: "(LVI-asemakuva tehdään 10 vk ennen talotoimitusta)",
+    20: "RAKENNUSLUPA LAINVOIMAINEN",
+    21: "LVI-suunnittelu, lopullinen kiintokalustesuunnittelu 5 viikkoa tästä eteenpäin. 17–19 viikot elementtisuunnittelu",
+    22: "LVI-suunnittelu",
+    23: "Maansiirtotyöt alkaa",
+    24: "Tontti rakentamiskunnossa / paalukohteissa paalutus",
+    25: "Perustusten valu, sähkösuunnitelmien tekeminen",
+    26: "Talotoimitus",
+    27: "Aloituspalaveri. Salaojat, sadevesikaivot ja routasuojaus. Sisä- ja ulkopuoliset täytöt",
+    28: "Talotoimitus. (Sähkösuunnittelu / Sähköpistesuunnittelu)",
+    29: "Vesikattoasennus. Asiakas kommentoi sähkösuunnitelman",
+    30: "Sähkösuunnitelman tekeminen jatkuu",
+    31: "LVI-töiden aloitus / asiakas hyväksyy sähkösuunnitelman",
+    32: "Sisustusvalinnat ilmoitetaan toimittajalle",
+    33: "Lattiavalu",
+    34: "Vesimittarin asennus. Sähköjohdotus",
+    36: "Takka-asennus",
+    37: "Sisälevytykset tehty",
+    42: "Sisustusmateriaalin sisäänkanto (SISUSTAITSE LUOVUTUS)",
+    43: "Maalus / tapetointi alkaa. Kattoturvatuotteiden ja sadevesijärjestelmän toimitus/asennus",
+    44: "Laattojen vastaanotto. Laatoitus",
+    47: "Kiintokalustetoimitus / asennus. Kodinkoneiden vastaanotto",
+    48: "Lattiamateriaalin asennus, listoitus",
+    49: "LVI- ja sähkökalustus / Laminaatti, listat, väliovet, vastaanotto. Välisiivous",
+    50: "Laminaattiasennus, listoitus",
+    51: "Luovutus 1 krs. talot",
+    56: "Luovutus 2 ja 1,5 krs. talot",
+    60: "Luovutus paritalot",
 }
 
 
@@ -104,7 +111,7 @@ def aikataulu():
 
         iso_year, iso_week, _ = current.isocalendar()
         month_name = current.strftime("%b").capitalize()
-        vaihe = PHASES.get((iso_year, iso_week), "")
+        vaihe = PHASES.get(projektiviikko, "")
         jakso = laske_jakso(projektiviikko)
 
         tulos.append({
