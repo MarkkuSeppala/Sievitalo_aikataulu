@@ -105,7 +105,15 @@ def aikataulu():
         projektiviikko = ((current - start_date).days // 7) + 1
 
         iso_year, iso_week, _ = current.isocalendar()
-        month_name = current.strftime("%b").capitalize()
+        
+        # Suomenkieliset kuukausien nimet
+        month_names_fi = {
+            1: "Tammi", 2: "Helmi", 3: "Maalis", 4: "Huhti",
+            5: "Touko", 6: "Kesä", 7: "Heinä", 8: "Elo",
+            9: "Syys", 10: "Loka", 11: "Marras", 12: "Joulu"
+        }
+        month_name = month_names_fi[current.month]
+        
         vaihe = PHASES.get(projektiviikko, "")
         jakso = laske_jakso(projektiviikko)
 
