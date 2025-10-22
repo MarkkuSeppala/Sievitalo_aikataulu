@@ -3,16 +3,25 @@ import React, { useState } from "react";
 export default function Aikataulu() {
   const [sopimusPvm, setSopimusPvm] = useState("");
   const [aikataulu, setAikataulu] = useState([]);
+  const [loading, setLoading] = useState(false);
 
   const haeAikataulu = async () => {
     if (!sopimusPvm) return;
-    const res = await fetch("https://sievitalo-backend.onrender.com/api/aikataulu", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ sopimus_pvm: sopimusPvm }),
-    });
-    const data = await res.json();
-    setAikataulu(data);
+    
+    setLoading(true);
+    try {
+      const res = await fetch("https://sievitalo-backend.onrender.com/api/aikataulu", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ sopimus_pvm: sopimusPvm }),
+      });
+      const data = await res.json();
+      setAikataulu(data);
+    } catch (error) {
+      console.error("Virhe aikataulun haussa:", error);
+    } finally {
+      setLoading(false);
+    }
   };
 
   const kuukaudenVari = (kuukausi) => {
@@ -87,6 +96,38 @@ export default function Aikataulu() {
 
   const aikatauluViikoilla = laskeViikot(aikataulu);
 
+  // Tiimalasi-komponentti
+  const Tiimalasi = () => (
+    <div style={{
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'center',
+      justifyContent: 'center',
+      padding: '40px',
+      backgroundColor: '#ffffff',
+      borderRadius: '12px',
+      boxShadow: '0 4px 12px rgba(0,0,0,0.1)',
+      margin: '30px auto',
+      width: '300px'
+    }}>
+      <div style={{
+        width: '50px',
+        height: '50px',
+        border: '4px solid #f3f3f3',
+        borderTop: '4px solid #1976d2',
+        borderRadius: '50%',
+        animation: 'spin 1s linear infinite',
+        marginBottom: '20px'
+      }}></div>
+      <p style={{
+        fontSize: '18px',
+        color: '#666',
+        margin: 0,
+        fontWeight: '500'
+      }}>Ladataan aikataulua...</p>
+    </div>
+  );
+
   return (
     <div
       style={{
@@ -97,6 +138,14 @@ export default function Aikataulu() {
         minHeight: "100vh",
       }}
     >
+      <style>
+        {`
+          @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+          }
+        `}
+      </style>
       <img
         src="/sievitalo_logo.png"
         alt="Sievitalo logo"
@@ -134,21 +183,25 @@ export default function Aikataulu() {
         />
         <button
           onClick={haeAikataulu}
+          disabled={loading}
           style={{
             padding: "6px 12px",
-            backgroundColor: "#1976d2",
+            backgroundColor: loading ? "#ccc" : "#1976d2",
             color: "white",
             border: "none",
             borderRadius: "5px",
             fontSize: "16px",
-            cursor: "pointer",
+            cursor: loading ? "not-allowed" : "pointer",
+            opacity: loading ? 0.6 : 1,
           }}
         >
-          Näytä aikataulu
+          {loading ? "Ladataan..." : "Näytä aikataulu"}
         </button>
       </div>
 
-      {aikatauluViikoilla.length > 0 && (
+      {loading && <Tiimalasi />}
+
+      {!loading && aikatauluViikoilla.length > 0 && (
         <div
           style={{
             width: "70%",
