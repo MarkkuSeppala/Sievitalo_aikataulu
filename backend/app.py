@@ -23,7 +23,7 @@ PHASES = {
     18: "Rakennuslupa lainvoimainen",
     19: "(LVI-asemakuva tehdään n.10 vk ennen talotoimitusta)",
     20: "Elementtisuunnittelu",
-    21: "Materiaalitilaukset,
+    21: "Materiaalitilaukset",
     22: "LVI-suunnittelu",
     23: "Maansiirtotyöt alkaa",
     24: "Tontti rakentamiskunnossa / paalukohteissa paalutus",
